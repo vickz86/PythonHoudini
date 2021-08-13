@@ -1,1 +1,21 @@
-first
+def templateMerge():
+   current=hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor).currentNode()
+   father =current.parent()
+   allNodes = father.children()
+   
+   
+   hasMain = 0
+   
+   for el in allNodes :
+    if (el.name() == "main"):
+        if (el.isTemplateFlagSet()==0):
+            el.setTemplateFlag(1)
+        else :
+            el.setTemplateFlag(0)
+        hasMain = 1
+   
+   if (hasMain == 0):
+    hou.ui.displayMessage("no main merge node")
+   
+
+   
